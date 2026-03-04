@@ -291,7 +291,11 @@ def observable_rmse(obs_ref: np.ndarray, obs_test: np.ndarray) -> float:
 
 
 def compute_fft2_magnitude(data: np.ndarray) -> np.ndarray:
-    return np.abs(np.fft.fftshift(np.fft.fft2(data)))
+    # Subtract the global mean to remove the DC (zero-frequency) component,
+    # so that the spectrum reveals only the dynamical fluctuations.
+    centered = data - np.mean(data)
+    ft = np.fft.fftshift(np.fft.fft2(centered))
+    return np.abs(ft) 
 
 
 def _save_spacetime_triptych(
@@ -330,6 +334,8 @@ def _save_fft_plot(fft_amp: np.ndarray, times: np.ndarray, title: str, out_path:
         origin="lower",
         aspect="auto",
         cmap="magma",
+        vmin=0.0,
+        vmax=10.0,
         extent=[k[0], k[-1], omega[0], omega[-1]],
     )
     ax.set_xlabel("wave number k")
