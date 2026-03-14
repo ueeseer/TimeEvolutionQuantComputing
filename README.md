@@ -32,6 +32,23 @@ If you want NumPy-vs-Qiskit comparison outputs, also install Qiskit:
 pip install qiskit
 ```
 
+For the report notebook, open Jupyter from the project root after installation so the same
+Python environment can import the package cleanly:
+
+```bash
+jupyter lab
+```
+
+or
+
+```bash
+jupyter notebook
+```
+
+The notebook at `GroupProject/final_report.ipynb` now auto-detects the project root by looking
+for `pyproject.toml`, so it works whether Jupyter was launched from the repository root or from
+inside `GroupProject/`.
+
 ## Running the Project
 
 Run the full simulation pipeline (exact evolution, Trotter decomposition, noisy trajectories, and error-scaling analysis):
