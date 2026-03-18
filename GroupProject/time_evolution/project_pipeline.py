@@ -342,7 +342,8 @@ def _save_fft_plot(fft_amp: np.ndarray, times: np.ndarray, title: str, out_path:
     ax.set_ylabel("angular frequency omega")
     ax.set_title(title)
     fig.colorbar(im, ax=ax, shrink=0.88)
-    fig.savefig(out_path, dpi=180)
+    fig.savefig(out_path,
+     dpi=180)
     plt.close(fig)
 
 
